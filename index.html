@@ -162,6 +162,17 @@
     .cta-band h2{color:#fff;font-size:31px;margin:8px 0}
     .cta-band p{color:#d2e5f2;font-size:13px;margin:0;max-width:570px}
     .cta-band .btn{background:#fff;color:#102b50;white-space:nowrap;position:relative;z-index:1}
+    .story{background:var(--surface-2)}
+    .story-frame{max-width:860px;margin:0 auto}
+    .yt-facade{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:var(--radius);overflow:hidden;background:#0c203a;box-shadow:var(--shadow);cursor:pointer;padding:0;color:inherit}
+    .yt-facade img{width:100%;height:100%;object-fit:cover;display:block}
+    .yt-facade iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .yt-play{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(180deg,rgba(12,32,58,.12),rgba(12,32,58,.45))}
+    .yt-play span{width:72px;height:72px;border-radius:50%;background:rgba(22,139,206,.94);color:#fff;display:grid;place-items:center;box-shadow:0 12px 28px rgba(12,32,58,.35)}
+    .yt-facade:hover .yt-play span{transform:scale(1.06);background:var(--blue)}
+    .yt-play svg{width:28px;height:28px;margin-left:3px}
+    .story-note{text-align:center;margin:18px auto 0;max-width:620px;color:var(--muted);font-size:14px}
+    .story-note a{color:var(--blue);font-weight:750}
     .faq-list{max-width:820px;margin:auto;display:grid;gap:10px}
     details{border:1px solid var(--line);border-radius:14px;padding:17px 19px;background:var(--faq-bg)}
     summary{cursor:pointer;list-style:none;font-size:13px;font-weight:800;color:var(--heading);display:flex;justify-content:space-between;gap:15px}
@@ -208,7 +219,7 @@
         <span>SAPA<small>Sistem Administrasi & Pelayanan Antarwarga - DIGITAL COMMUNITY SERVICE</small></span>
       </a>
       <nav class="navlinks" id="navlinks" aria-label="Navigasi utama">
-        <a href="#solusi">Solusi</a><a href="#fitur">Fitur</a><a href="#managed">Managed Service</a><a href="#harga">Harga</a><a href="#faq">FAQ</a>
+        <a href="#video">Video</a><a href="#solusi">Solusi</a><a href="#fitur">Fitur</a><a href="#managed">Managed Service</a><a href="#harga">Harga</a><a href="#faq">FAQ</a>
       </nav>
       <div class="nav-actions">
         <button class="theme-btn" id="themeBtn" type="button" aria-label="Ganti tema" title="Ganti tema">
@@ -260,6 +271,23 @@
         <div class="trust-item"><span class="trust-icon">⌂</span> Untuk RT dan RW</div>
       </div>
     </div>
+
+    <section class="story" id="video">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Community Digital Shift</span>
+          <h2>Mengapa lingkungan perlu beralih ke layanan digital.</h2>
+          <p>Tonton bagaimana pergeseran digital membantu pengurus RT dan RW mengelola pelayanan warga dengan lebih tertata.</p>
+        </div>
+        <div class="story-frame">
+          <button class="yt-facade" id="ytFacade" type="button" data-yt="jXSC1UaONzQ" aria-label="Putar video Community Digital Shift">
+            <img src="https://i.ytimg.com/vi/jXSC1UaONzQ/hqdefault.jpg" alt="Pratinjau video Community Digital Shift" width="860" height="484">
+            <span class="yt-play" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v13.72L19 12 8 5.14z"/></svg></span></span>
+          </button>
+        </div>
+        <p class="story-note">Cerita singkat tentang transformasi digital komunitas. Setelah menonton, <a href="#solusi">lihat solusi SAPA-RT dan SAPA-RW</a>.</p>
+      </div>
+    </section>
 
     <section id="solusi">
       <div class="container">
@@ -397,7 +425,7 @@
           <p style="max-width:330px;margin-top:18px">Solusi digital untuk membantu pengurus RT/RW membangun administrasi dan pelayanan lingkungan yang lebih tertata, transparan, dan terhubung.</p>
           <p><strong style="color:#fff">Membangun Lingkungan Digital, Dimulai dari RT.</strong></p>
         </div>
-        <div><h4>Jelajahi</h4><div class="footer-links"><a href="#solusi">SAPA-RT / SAPA-RW</a><a href="#fitur">Fitur Utama</a><a href="#managed">Managed Service</a><a href="#harga">Paket & Harga</a><a href="#faq">FAQ</a></div></div>
+        <div><h4>Jelajahi</h4><div class="footer-links"><a href="#video">Community Digital Shift</a><a href="#solusi">SAPA-RT / SAPA-RW</a><a href="#fitur">Fitur Utama</a><a href="#managed">Managed Service</a><a href="#harga">Paket & Harga</a><a href="#faq">FAQ</a></div></div>
         <div><h4>Hubungi Kami</h4><div class="footer-links"><a data-wa href="#">WhatsApp Konsultasi</a><a data-demo href="#">Demo Portal</a><a data-email href="#">Email: <span data-email-text>Belum dikonfigurasi</span></a><a data-website href="#" target="_blank" rel="noopener noreferrer">Website: <span data-website-text>Belum dikonfigurasi</span></a></div></div>
       </div>
       <div class="copyright"><span>© <span id="year"></span> SAPA-RT / SAPA-RW. Hak cipta dilindungi.</span><span>One Digital Ecosystem. Better Community Services.</span></div>
@@ -492,6 +520,21 @@
       applyTheme(next);
     });
     applyTheme(document.documentElement.getAttribute("data-theme")||"light");
+
+    const ytFacade=document.getElementById("ytFacade");
+    if(ytFacade){
+      ytFacade.addEventListener("click",()=>{
+        const wrap=document.createElement("div");
+        wrap.className="yt-facade";
+        const frame=document.createElement("iframe");
+        frame.src="https://www.youtube-nocookie.com/embed/"+ytFacade.getAttribute("data-yt")+"?autoplay=1&rel=0";
+        frame.title="Community Digital Shift";
+        frame.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        frame.allowFullscreen=true;
+        wrap.appendChild(frame);
+        ytFacade.replaceWith(wrap);
+      },{once:true});
+    }
   </script>
 </body>
 </html>
