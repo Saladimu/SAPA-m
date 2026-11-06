@@ -173,6 +173,23 @@
     .yt-play svg{width:28px;height:28px;margin-left:3px}
     .story-note{text-align:center;margin:18px auto 0;max-width:620px;color:var(--muted);font-size:14px}
     .story-note a{color:var(--blue);font-weight:750}
+    .demo-pick{max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .demo-card{display:flex;flex-direction:column;align-items:flex-start;text-align:left;border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:var(--surface);box-shadow:0 10px 30px rgba(16,43,80,.045);cursor:pointer;color:inherit}
+    .demo-card:hover{transform:translateY(-2px);border-color:var(--blue)}
+    .demo-card .demo-ico{width:44px;height:44px;border-radius:13px;background:var(--icon-bg);color:var(--blue);display:grid;place-items:center;font-size:18px;margin-bottom:14px}
+    .demo-card h3{font-size:18px;color:var(--heading);margin:0 0 4px;letter-spacing:-.03em}
+    .demo-card small{font-size:11px;color:var(--muted);display:block;margin-bottom:10px}
+    .demo-card p{font-size:13px;color:var(--muted);margin:0 0 16px}
+    .demo-card .go{font-size:13px;font-weight:750;color:var(--blue)}
+    .demo-stage{display:none;position:fixed;inset:0;z-index:80;background:#0b1624}
+    .demo-stage.open{display:block}
+    .demo-stage iframe{width:100%;height:100%;border:0;background:#fff}
+    .demo-exit{position:fixed;left:18px;top:18px;z-index:90;width:52px;height:52px;border:0;border-radius:50%;background:rgba(255,255,255,.92);color:var(--navy);box-shadow:0 12px 28px rgba(0,0,0,.28);display:none;place-items:center;cursor:pointer}
+    .demo-exit.show{display:grid}
+    .demo-exit:hover{transform:scale(1.06)}
+    .demo-exit svg{width:22px;height:22px}
+    body.demo-open{overflow:hidden}
+    body.demo-open .wa-float{display:none}
     .faq-list{max-width:820px;margin:auto;display:grid;gap:10px}
     details{border:1px solid var(--line);border-radius:14px;padding:17px 19px;background:var(--faq-bg)}
     summary{cursor:pointer;list-style:none;font-size:13px;font-weight:800;color:var(--heading);display:flex;justify-content:space-between;gap:15px}
@@ -199,7 +216,7 @@
       .hero{padding:65px 0 58px}.hero-grid{grid-template-columns:1fr}.hero-visual{min-height:300px;margin-top:4px}.portal-window{max-width:500px}.float-chip{right:0;bottom:4px}
       .trust-grid{grid-template-columns:repeat(2,1fr);padding:18px 0}
       section{padding:65px 0}.product-grid,.managed-grid{grid-template-columns:1fr}.managed-grid{gap:28px}
-      .value-grid{grid-template-columns:1fr 1fr}.cta-band{padding:30px;display:block}.cta-band .btn{margin-top:20px}
+      .value-grid{grid-template-columns:1fr 1fr}.cta-band{padding:30px;display:block}.cta-band .btn{margin-top:20px}.demo-pick{grid-template-columns:1fr}
       .footer-grid{grid-template-columns:1fr 1fr;gap:28px}.footer-grid>div:first-child{grid-column:1/-1}
     }
     @media(max-width:520px){h1{font-size:41px}.hero p{font-size:15px}.hero-visual{min-height:265px}.portal-window{padding:11px}.dash-card{padding:9px;min-height:72px}.float-chip{font-size:9px;padding:9px 11px}
@@ -219,7 +236,7 @@
         <span>SAPA<small>Sistem Administrasi & Pelayanan Antarwarga - DIGITAL COMMUNITY SERVICE</small></span>
       </a>
       <nav class="navlinks" id="navlinks" aria-label="Navigasi utama">
-        <a href="#video">Video</a><a href="#solusi">Solusi</a><a href="#fitur">Fitur</a><a href="#managed">Managed Service</a><a href="#harga">Harga</a><a href="#faq">FAQ</a>
+        <a href="#video">Video</a><a href="#solusi">Solusi</a><a href="#demo">Demo</a><a href="#fitur">Fitur</a><a href="#managed">Managed Service</a><a href="#harga">Harga</a><a href="#faq">FAQ</a>
       </nav>
       <div class="nav-actions">
         <button class="theme-btn" id="themeBtn" type="button" aria-label="Ganti tema" title="Ganti tema">
@@ -241,7 +258,7 @@
           <p>Satu platform untuk membantu pengurus RT dan RW mengelola administrasi, keuangan, pengajuan surat, pengaduan, informasi, dan koordinasi wilayah.</p>
           <div class="hero-actions">
             <a class="btn" data-wa href="#">Jadwalkan Demo Gratis <span>→</span></a>
-            <a class="btn secondary" href="#solusi">Jelajahi Solusi</a>
+             <a class="btn secondary" href="#demo">Coba Demo Aplikasi</a>
           </div>
           <div class="hero-note">Mudah diakses melalui HP dan komputer • Dikelola dengan layanan Managed Service</div>
         </div>
@@ -314,6 +331,33 @@
             </ul>
           </article>
         </div>
+      </div>
+    </section>
+
+    <section class="story" id="demo">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Demo Aplikasi</span>
+          <h2>Coba SAPA-RT langsung di halaman ini.</h2>
+          <p>Jelajahi alur administrasi RT dan koordinasi RW tanpa meninggalkan situs.</p>
+        </div>
+        <div class="demo-pick">
+          <button class="demo-card" type="button" data-demo-open="rt/" aria-label="Buka Admin RT">
+            <span class="demo-ico" aria-hidden="true">▣</span>
+            <h3>Admin RT</h3>
+            <small>Mode lokal (localStorage)</small>
+            <p>Kelola data warga, iuran kas, pengumuman, kegiatan, pengajuan surat, dan pengaduan.</p>
+            <span class="go">Buka Admin RT →</span>
+          </button>
+          <button class="demo-card" type="button" data-demo-open="rw/" aria-label="Buka Portal RW">
+            <span class="demo-ico" aria-hidden="true">◉</span>
+            <h3>Portal RW</h3>
+            <small>Mock /api di browser</small>
+            <p>Ringkasan RT, keputusan surat, tanggapan pengaduan, pengguna, registry, dan audit.</p>
+            <span class="go">Buka Portal RW →</span>
+          </button>
+        </div>
+        <p class="story-note">Demo bersifat pratinjau. Data contoh hanya tersimpan di browser Anda.</p>
       </div>
     </section>
 
@@ -425,13 +469,19 @@
           <p style="max-width:330px;margin-top:18px">Solusi digital untuk membantu pengurus RT/RW membangun administrasi dan pelayanan lingkungan yang lebih tertata, transparan, dan terhubung.</p>
           <p><strong style="color:#fff">Membangun Lingkungan Digital, Dimulai dari RT.</strong></p>
         </div>
-        <div><h4>Jelajahi</h4><div class="footer-links"><a href="#video">Community Digital Shift</a><a href="#solusi">SAPA-RT / SAPA-RW</a><a href="#fitur">Fitur Utama</a><a href="#managed">Managed Service</a><a href="#harga">Paket & Harga</a><a href="#faq">FAQ</a></div></div>
-        <div><h4>Hubungi Kami</h4><div class="footer-links"><a data-wa href="#">WhatsApp Konsultasi</a><a data-demo href="#">Demo Portal</a><a data-email href="#">Email: <span data-email-text>Belum dikonfigurasi</span></a><a data-website href="#" target="_blank" rel="noopener noreferrer">Website: <span data-website-text>Belum dikonfigurasi</span></a></div></div>
+        <div><h4>Jelajahi</h4><div class="footer-links"><a href="#video">Community Digital Shift</a><a href="#solusi">SAPA-RT / SAPA-RW</a><a href="#demo">Demo Aplikasi</a><a href="#fitur">Fitur Utama</a><a href="#managed">Managed Service</a><a href="#harga">Paket & Harga</a><a href="#faq">FAQ</a></div></div>
+        <div><h4>Hubungi Kami</h4><div class="footer-links"><a data-wa href="#">WhatsApp Konsultasi</a><a data-email href="#">Email: <span data-email-text>Belum dikonfigurasi</span></a><a data-website href="#" target="_blank" rel="noopener noreferrer">Website: <span data-website-text>Belum dikonfigurasi</span></a></div></div>
       </div>
       <div class="copyright"><span>© <span id="year"></span> SAPA-RT / SAPA-RW. Hak cipta dilindungi.</span><span>One Digital Ecosystem. Better Community Services.</span></div>
     </div>
   </footer>
   <a class="wa-float" data-wa href="#" aria-label="Hubungi SAPA melalui WhatsApp" title="WhatsApp">◔</a>
+  <div class="demo-stage" id="demoStage" hidden>
+    <iframe id="demoFrame" title="SAPA Demo Aplikasi"></iframe>
+  </div>
+  <button class="demo-exit" id="demoExit" type="button" aria-label="Keluar dari demo" title="Kembali">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/><path d="M9 12h12"/><path d="M4 4v16"/></svg>
+  </button>
 
   <script>
     /*
@@ -439,14 +489,14 @@
       - whatsappNumber: nomor internasional tanpa + atau spasi, contoh 62812xxxxxxx.
       - infoEmail: alamat email aktif, contoh halo@sapa-rt.id.
       - websiteUrl: alamat website, contoh https://sapa-rt.id.
-      - demoUrl: alamat portal demo, contoh https://demo.sapa-rt.id.
+      - demoUrl: alamat aplikasi demo yang ditampilkan di bagian Demo.
       Isi nilai di bawah ini. Bagian footer akan mengikuti konfigurasi secara otomatis.
     */
     const SAPA_CONFIG = {
       whatsappNumber: "628161905229",
       infoEmail: "martinsabera@gmail.com",
       websiteUrl: "https://bio.site/martinsabera",
-      demoUrl: "https://sapa-rt018.pages.dev/",
+      demoUrl: "https://demo-sapa.pages.dev/",
       defaultMessage: "Halo SAPA, saya ingin mengetahui lebih lanjut dan menjadwalkan demo SAPA-RT / SAPA-RW."
     };
 
@@ -473,10 +523,31 @@
       const plan = el.getAttribute("data-wa-plan");
       el.href = waLink("Halo SAPA, saya tertarik dengan paket " + plan + ". Mohon informasi fitur, biaya, dan jadwal demo.");
     });
-    document.querySelectorAll("[data-demo]").forEach(el=>{
-      const demo = String(SAPA_CONFIG.demoUrl || "").trim();
-      el.href = demo && demo !== "#" ? demo : (websiteHref || "#");
-      if (!demo || demo === "#") el.title = "Isi demoUrl pada konfigurasi untuk menghubungkan portal demo";
+    const demoBase=(String(SAPA_CONFIG.demoUrl||"").trim()||"#").replace(/\/?$/, "/");
+    const demoStage=document.getElementById("demoStage");
+    const demoFrame=document.getElementById("demoFrame");
+    const demoExit=document.getElementById("demoExit");
+    function closeDemo(){
+      document.body.classList.remove("demo-open");
+      demoStage.classList.remove("open");
+      demoStage.hidden=true;
+      demoExit.classList.remove("show");
+      demoFrame.src="about:blank";
+    }
+    function openDemo(path){
+      if(!demoBase || demoBase==="#/") return;
+      demoFrame.src=demoBase+path.replace(/^\//,"");
+      demoStage.hidden=false;
+      demoStage.classList.add("open");
+      demoExit.classList.add("show");
+      document.body.classList.add("demo-open");
+    }
+    document.querySelectorAll("[data-demo-open]").forEach(el=>{
+      el.addEventListener("click",()=>openDemo(el.getAttribute("data-demo-open")||""));
+    });
+    demoExit.addEventListener("click",closeDemo);
+    document.addEventListener("keydown",e=>{
+      if(e.key==="Escape" && document.body.classList.contains("demo-open")) closeDemo();
     });
     document.querySelectorAll("[data-email]").forEach(el=>{
       el.href = emailReady ? "mailto:" + cleanEmail : "#";
