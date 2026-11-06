@@ -184,10 +184,14 @@
     .demo-stage{display:none;position:fixed;inset:0;z-index:80;background:#0b1624}
     .demo-stage.open{display:block}
     .demo-stage iframe{width:100%;height:100%;border:0;background:#fff}
-    .demo-exit{position:fixed;left:18px;top:18px;z-index:90;width:52px;height:52px;border:0;border-radius:50%;background:rgba(255,255,255,.92);color:var(--navy);box-shadow:0 12px 28px rgba(0,0,0,.28);display:none;place-items:center;cursor:pointer}
+    .demo-exit{position:fixed;left:18px;top:18px;z-index:90;width:52px;height:52px;border:0;border-radius:50%;background:#ffe14a;color:#1a1400;box-shadow:0 12px 28px rgba(0,0,0,.28);display:none;place-items:center;cursor:pointer}
     .demo-exit.show{display:grid}
     .demo-exit:hover{transform:scale(1.06)}
     .demo-exit svg{width:22px;height:22px}
+    .demo-note{position:fixed;z-index:91;display:none;width:248px;padding:14px 14px 16px;background:rgba(255,225,74,.62);color:#1a1400;font-size:13px;font-weight:800;line-height:1.45;border-radius:3px;box-shadow:4px 8px 0 rgba(0,0,0,.12),0 16px 28px rgba(0,0,0,.16);transform:rotate(-6deg);pointer-events:none;backdrop-filter:blur(2px)}
+    .demo-note.show{display:block}
+    .demo-note:before{content:"";position:absolute;left:18px;top:-10px;border:8px solid transparent;border-bottom-color:rgba(255,225,74,.62)}
+    .demo-note-ico{display:inline-flex;width:22px;height:22px;border:2px solid #1a1400;border-radius:50%;align-items:center;justify-content:center;vertical-align:-5px;margin:0 4px}
     body.demo-open{overflow:hidden}
     body.demo-open .wa-float{display:none}
     .faq-list{max-width:820px;margin:auto;display:grid;gap:10px}
@@ -480,8 +484,9 @@
     <iframe id="demoFrame" title="SAPA Demo Aplikasi"></iframe>
   </div>
   <button class="demo-exit" id="demoExit" type="button" aria-label="Keluar dari demo" title="Kembali">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/><path d="M9 12h12"/><path d="M4 4v16"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
   </button>
+  <div class="demo-note" id="demoNote" role="note">tekan <span class="demo-note-ico" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a1400" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></span> untuk keluar dari aplikasi demo</div>
 
   <script>
     /*
@@ -527,11 +532,21 @@
     const demoStage=document.getElementById("demoStage");
     const demoFrame=document.getElementById("demoFrame");
     const demoExit=document.getElementById("demoExit");
+    const demoNote=document.getElementById("demoNote");
+    function placeDemoNote(){
+      const left=72+Math.round(Math.random()*90);
+      const top=8+Math.round(Math.random()*54);
+      const tilt=-12+Math.round(Math.random()*16);
+      demoNote.style.left=left+"px";
+      demoNote.style.top=top+"px";
+      demoNote.style.transform="rotate("+tilt+"deg)";
+    }
     function closeDemo(){
       document.body.classList.remove("demo-open");
       demoStage.classList.remove("open");
       demoStage.hidden=true;
       demoExit.classList.remove("show");
+      demoNote.classList.remove("show");
       demoFrame.src="about:blank";
     }
     function openDemo(path){
@@ -540,6 +555,8 @@
       demoStage.hidden=false;
       demoStage.classList.add("open");
       demoExit.classList.add("show");
+      placeDemoNote();
+      demoNote.classList.add("show");
       document.body.classList.add("demo-open");
     }
     document.querySelectorAll("[data-demo-open]").forEach(el=>{
