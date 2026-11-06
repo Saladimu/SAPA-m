@@ -163,8 +163,8 @@
     .cta-band p{color:#d2e5f2;font-size:13px;margin:0;max-width:570px}
     .cta-band .btn{background:#fff;color:#102b50;white-space:nowrap;position:relative;z-index:1}
     .story{background:var(--surface-2)}
-    .story-frame{max-width:860px;margin:0 auto}
-    .yt-facade{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:var(--radius);overflow:hidden;background:#0c203a;box-shadow:var(--shadow);cursor:pointer;padding:0;color:inherit}
+    .story-frame{max-width:360px;margin:0 auto}
+    .yt-facade{position:relative;display:block;width:100%;aspect-ratio:9/16;border:0;border-radius:var(--radius);overflow:hidden;background:#0c203a;box-shadow:var(--shadow);cursor:pointer;padding:0;color:inherit}
     .yt-facade img{width:100%;height:100%;object-fit:cover;display:block}
     .yt-facade iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
     .yt-play{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(180deg,rgba(12,32,58,.12),rgba(12,32,58,.45))}
@@ -172,7 +172,13 @@
     .yt-facade:hover .yt-play span{transform:scale(1.06);background:var(--blue)}
     .yt-play svg{width:28px;height:28px;margin-left:3px}
     .story-note{text-align:center;margin:18px auto 0;max-width:620px;color:var(--muted);font-size:14px}
-    .story-note a{color:var(--blue);font-weight:750}
+    .story-note a,.story-note button{color:var(--blue);font-weight:750;background:none;border:0;padding:0;cursor:pointer;font:inherit}
+    .story-note button{display:inline-flex;align-items:center;gap:6px}
+    .story-note button svg{width:16px;height:16px;flex-shrink:0}
+    .story-wide{max-width:860px;margin:22px auto 0;display:none}
+    .story-wide.show{display:block}
+    .yt-wide{position:relative;width:100%;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;background:#0c203a;box-shadow:var(--shadow)}
+    .yt-wide iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
     .demo-pick{max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:18px}
     .demo-card{display:flex;flex-direction:column;align-items:flex-start;text-align:left;border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:var(--surface);box-shadow:0 10px 30px rgba(16,43,80,.045);cursor:pointer;color:inherit}
     .demo-card:hover{transform:translateY(-2px);border-color:var(--blue)}
@@ -297,17 +303,22 @@
     <section class="story" id="video">
       <div class="container">
         <div class="section-head">
-          <span class="kicker">Community Digital Shift</span>
-          <h2>Mengapa lingkungan perlu beralih ke layanan digital.</h2>
-          <p>Tonton bagaimana pergeseran digital membantu pengurus RT dan RW mengelola pelayanan warga dengan lebih tertata.</p>
+          <span class="kicker">Teaser 1:29</span>
+          <h2>Pelayanan lingkungan yang lebih dekat dengan warga.</h2>
+          <p>Cuplikan singkat untuk publik: bagaimana SAPA membantu administrasi RT dan RW menjadi lebih tertata.</p>
         </div>
         <div class="story-frame">
-          <button class="yt-facade" id="ytFacade" type="button" data-yt="jXSC1UaONzQ" aria-label="Putar video Community Digital Shift">
-            <img src="https://i.ytimg.com/vi/jXSC1UaONzQ/hqdefault.jpg" alt="Pratinjau video Community Digital Shift" width="860" height="484">
+          <button class="yt-facade" id="ytFacade" type="button" data-yt="LsVgT4dv8zw" aria-label="Putar teaser SAPA">
+            <img src="https://i.ytimg.com/vi/LsVgT4dv8zw/hqdefault.jpg" alt="Pratinjau teaser SAPA" width="360" height="640">
             <span class="yt-play" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v13.72L19 12 8 5.14z"/></svg></span></span>
           </button>
         </div>
-        <p class="story-note">Cerita singkat tentang transformasi digital komunitas. Setelah menonton, <a href="#solusi">lihat solusi SAPA-RT dan SAPA-RW</a>.</p>
+        <p class="story-note">Setelah menonton, <a href="#solusi">lihat solusi SAPA</a> atau tonton <button type="button" id="shiftBtn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 16.5V7.5L16 12l-6 4.5z"/><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6zm2 0v12h12V6H6z"/></svg>Community Digital Shift</button>.</p>
+        <div class="story-wide" id="shiftWrap">
+          <div class="yt-wide">
+            <iframe id="shiftFrame" title="Community Digital Shift" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -617,12 +628,22 @@
         wrap.className="yt-facade";
         const frame=document.createElement("iframe");
         frame.src="https://www.youtube-nocookie.com/embed/"+ytFacade.getAttribute("data-yt")+"?autoplay=1&rel=0";
-        frame.title="Community Digital Shift";
+        frame.title="Teaser SAPA";
         frame.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
         frame.allowFullscreen=true;
         wrap.appendChild(frame);
         ytFacade.replaceWith(wrap);
       },{once:true});
+    }
+    const shiftBtn=document.getElementById("shiftBtn");
+    const shiftWrap=document.getElementById("shiftWrap");
+    const shiftFrame=document.getElementById("shiftFrame");
+    if(shiftBtn && shiftWrap && shiftFrame){
+      shiftBtn.addEventListener("click",()=>{
+        if(!shiftFrame.src) shiftFrame.src="https://www.youtube-nocookie.com/embed/jXSC1UaONzQ?autoplay=1&rel=0";
+        shiftWrap.classList.add("show");
+        shiftWrap.scrollIntoView({behavior:"smooth",block:"center"});
+      });
     }
   </script>
 </body>
