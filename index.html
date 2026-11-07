@@ -152,6 +152,12 @@
     .price-card li{font-size:11px;color:var(--price-li);margin:8px 0}
     .price-card .btn{width:100%;font-size:11px;padding:11px 10px}
     .pricing-note{font-size:11px;color:var(--muted);text-align:center;margin:24px auto 0;max-width:760px}
+    .price-guide{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:860px;margin:0 auto 28px}
+    .price-guide span{display:block;border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:12px 14px;font-size:12px;color:var(--heading);font-weight:750;text-align:center}
+    .price-guide small{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-top:3px}
+    .price-scope{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:860px;margin:0 auto 28px}
+    .price-scope div{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:var(--surface);font-size:12px;color:var(--muted)}
+    .price-scope strong{display:block;color:var(--heading);font-size:12px;margin-bottom:6px}
     .value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .value-card{padding:23px;border:1px solid var(--line);border-radius:18px;background:var(--surface)}
     .value-card .big-icon{font-size:25px}
@@ -237,7 +243,7 @@
     }
     @media(max-width:520px){h1{font-size:41px}.hero p{font-size:15px}.hero-visual{min-height:265px}.portal-window{padding:11px}.dash-card{padding:9px;min-height:72px}.float-chip{font-size:9px;padding:9px 11px}
       .trust-grid{gap:13px}.trust-item{font-size:10px}.product-card{padding:22px}.feature-list{grid-template-columns:1fr}
-      .pricing-grid{grid-template-columns:1fr}.price-card{padding:23px}.price-card .desc{min-height:0}
+      .pricing-grid{grid-template-columns:1fr}.price-card{padding:23px}.price-card .desc{min-height:0}.price-guide,.price-scope{grid-template-columns:1fr}
       .value-grid{grid-template-columns:1fr}.cta-band h2{font-size:26px}.footer-grid{grid-template-columns:1fr}.footer-grid>div:first-child{grid-column:auto}.proof-grid{grid-template-columns:1fr}
       .copyright{display:block}.copyright span{display:block;margin-top:6px}
     }
@@ -450,6 +456,15 @@
     <section class="pricing" id="harga">
       <div class="container">
         <div class="section-head"><span class="kicker">Paket layanan</span><h2>Pilih layanan sesuai kebutuhan lingkungan.</h2><p>Harga rekomendasi awal. Detail fitur, batas layanan, biaya pihak ketiga, dan ketentuan akan dikonfirmasi dalam penawaran.</p></div>
+        <div class="price-guide">
+          <span>RT baru<small>mulai dari Starter</small></span>
+          <span>RT aktif<small>pilih Professional</small></span>
+          <span>Koordinasi RW<small>pilih Portal</small></span>
+        </div>
+        <div class="price-scope">
+          <div><strong>Termasuk</strong>Portal sesuai paket, setup awal, pemeliharaan, dan dukungan sesuai ruang lingkup.</div>
+          <div><strong>Tidak termasuk</strong>Domain premium, pekerjaan kustom, migrasi data kompleks, dan layanan pihak ketiga berbayar.</div>
+        </div>
         <div class="pricing-grid">
           <article class="price-card">
             <h3>RT Starter</h3><div class="desc">Untuk kebutuhan administrasi dasar.</div>
