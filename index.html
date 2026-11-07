@@ -169,7 +169,13 @@
     .cta-band p{color:#d2e5f2;font-size:13px;margin:0;max-width:570px}
     .cta-band .btn{background:#fff;color:#102b50;white-space:nowrap;position:relative;z-index:1}
     .story{background:var(--surface-2)}
-    .story-frame{max-width:360px;margin:0 auto}
+    .story-layout{display:grid;grid-template-columns:1fr 320px 1fr;align-items:center;gap:28px;max-width:980px;margin:0 auto}
+    .story-frame{max-width:320px;margin:0 auto;width:100%}
+    .story-aside{display:grid;gap:14px}
+    .story-aside article{border:1px solid var(--line);border-radius:16px;padding:16px 18px;background:var(--surface)}
+    .story-aside .who{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);font-weight:850}
+    .story-aside h3{font-size:15px;color:var(--heading);margin:6px 0 6px}
+    .story-aside p{font-size:13px;color:var(--muted);margin:0}
     .yt-facade{position:relative;display:block;width:100%;aspect-ratio:9/16;border:0;border-radius:var(--radius);overflow:hidden;background:#0c203a;box-shadow:var(--shadow);cursor:pointer;padding:0;color:inherit}
     .yt-facade img{width:100%;height:100%;object-fit:cover;display:block}
     .yt-facade iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -179,6 +185,16 @@
     .yt-play svg{width:28px;height:28px;margin-left:3px}
     .story-note{text-align:center;margin:18px auto 0;max-width:620px;color:var(--muted);font-size:14px}
     .story-note a,.story-note button{color:var(--blue);font-weight:750;background:none;border:0;padding:0;cursor:pointer;font:inherit}
+    .shift-cta{max-width:860px;margin:22px auto 0;display:flex;align-items:center;gap:18px;width:100%;border:1px solid var(--line);border-radius:18px;padding:12px 14px 12px 12px;background:var(--surface);box-shadow:0 10px 30px rgba(16,43,80,.06);cursor:pointer;text-align:left;color:inherit}
+    .shift-cta:hover{border-color:var(--blue);transform:translateY(-2px)}
+    .shift-thumb{position:relative;width:148px;height:84px;border-radius:12px;overflow:hidden;flex-shrink:0;background:#0c203a}
+    .shift-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .shift-thumb i{position:absolute;inset:0;display:grid;place-items:center;background:rgba(12,32,58,.28)}
+    .shift-thumb i span{width:36px;height:36px;border-radius:50%;background:#ffe14a;color:#1a1400;display:grid;place-items:center;box-shadow:0 8px 18px rgba(0,0,0,.25)}
+    .shift-thumb svg{width:16px;height:16px;margin-left:2px}
+    .shift-cta strong{display:block;font-size:15px;color:var(--heading);margin-bottom:4px}
+    .shift-cta small{display:block;font-size:12px;color:var(--muted)}
+    .shift-cta em{display:inline-block;margin-top:8px;font-style:normal;font-size:12px;font-weight:800;color:var(--blue)}
     .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:980px;margin:0 auto}
     .proof-card{border:1px solid var(--line);border-radius:18px;padding:23px;background:var(--surface)}
     .proof-card .who{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);font-weight:850}
@@ -237,14 +253,14 @@
       .navlinks.open{display:flex}.navlinks a{padding:8px 0}
       .hero{padding:65px 0 58px}.hero-grid{grid-template-columns:1fr}.hero-visual{min-height:300px;margin-top:4px}.portal-window{max-width:500px}.float-chip{right:0;bottom:4px}
       .trust-grid{grid-template-columns:repeat(2,1fr);padding:18px 0}
-      section{padding:65px 0}.product-grid,.managed-grid{grid-template-columns:1fr}.managed-grid{gap:28px}
+      section{padding:65px 0}.product-grid,.managed-grid{grid-template-columns:1fr}.managed-grid{gap:28px}.story-layout{grid-template-columns:1fr;gap:16px}
       .value-grid{grid-template-columns:1fr 1fr}.cta-band{padding:30px;display:block}.cta-band .btn{margin-top:20px}.demo-pick{grid-template-columns:1fr}.proof-grid{grid-template-columns:1fr}
       .footer-grid{grid-template-columns:1fr 1fr;gap:28px}.footer-grid>div:first-child{grid-column:1/-1}
     }
     @media(max-width:520px){h1{font-size:41px}.hero p{font-size:15px}.hero-visual{min-height:265px}.portal-window{padding:11px}.dash-card{padding:9px;min-height:72px}.float-chip{font-size:9px;padding:9px 11px}
       .trust-grid{gap:13px}.trust-item{font-size:10px}.product-card{padding:22px}.feature-list{grid-template-columns:1fr}
       .pricing-grid{grid-template-columns:1fr}.price-card{padding:23px}.price-card .desc{min-height:0}.price-guide,.price-scope{grid-template-columns:1fr}
-      .value-grid{grid-template-columns:1fr}.cta-band h2{font-size:26px}.footer-grid{grid-template-columns:1fr}.footer-grid>div:first-child{grid-column:auto}.proof-grid{grid-template-columns:1fr}
+      .value-grid{grid-template-columns:1fr}.cta-band h2{font-size:26px}.footer-grid{grid-template-columns:1fr}.footer-grid>div:first-child{grid-column:auto}.proof-grid{grid-template-columns:1fr}.shift-cta{align-items:flex-start}.shift-thumb{width:112px;height:64px}
       .copyright{display:block}.copyright span{display:block;margin-top:6px}
     }
   </style>
@@ -318,13 +334,50 @@
           <h2>Pelayanan lingkungan yang lebih dekat dengan warga.</h2>
           <p>Cuplikan singkat untuk publik: bagaimana SAPA membantu administrasi RT dan RW menjadi lebih tertata.</p>
         </div>
-        <div class="story-frame">
-          <button class="yt-facade" id="ytFacade" type="button" data-yt="LsVgT4dv8zw" aria-label="Putar teaser SAPA">
-            <img src="https://i.ytimg.com/vi/LsVgT4dv8zw/hqdefault.jpg" alt="Pratinjau teaser SAPA" width="360" height="640">
-            <span class="yt-play" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v13.72L19 12 8 5.14z"/></svg></span></span>
-          </button>
+        <div class="story-layout">
+          <div class="story-aside">
+            <article>
+              <div class="who">Untuk warga</div>
+              <h3>Urusan lingkungan lebih mudah diikuti</h3>
+              <p>Pengumuman, pengajuan surat, dan status layanan dapat dicek tanpa harus menelusuri chat grup.</p>
+            </article>
+            <article>
+              <div class="who">Untuk warga</div>
+              <h3>Lapor dan aspirasi tetap terbuka</h3>
+              <p>Saluran pengaduan tetap ada, dengan status tindak lanjut yang lebih jelas.</p>
+            </article>
+          </div>
+          <div class="story-frame">
+            <button class="yt-facade" id="ytFacade" type="button" data-yt="LsVgT4dv8zw" aria-label="Putar teaser SAPA">
+              <img src="https://i.ytimg.com/vi/LsVgT4dv8zw/hqdefault.jpg" alt="Pratinjau teaser SAPA" width="360" height="640">
+              <span class="yt-play" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v13.72L19 12 8 5.14z"/></svg></span></span>
+            </button>
+          </div>
+          <div class="story-aside">
+            <article>
+              <div class="who">Untuk pengurus</div>
+              <h3>Administrasi RT dalam satu tempat</h3>
+              <p>Data warga, kas, surat, dan pengaduan dikelola dari portal, bukan dari banyak file terpisah.</p>
+            </article>
+            <article>
+              <div class="who">Untuk pengurus</div>
+              <h3>Koordinasi RW lebih tertata</h3>
+              <p>Monitoring layanan dan eskalasi antar-RT dapat dilihat dalam satu ringkasan wilayah.</p>
+            </article>
+          </div>
         </div>
-        <p class="story-note">Setelah menonton, <a href="#solusi">lihat solusi SAPA</a> atau tonton <button type="button" id="shiftBtn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 16.5V7.5L16 12l-6 4.5z"/><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6zm2 0v12h12V6H6z"/></svg>Community Digital Shift</button>.</p>
+        <p class="story-note">Setelah menonton, <a href="#solusi">lihat solusi SAPA</a>.</p>
+        <button class="shift-cta" id="shiftBtn" type="button" aria-label="Putar Community Digital Shift">
+          <span class="shift-thumb" aria-hidden="true">
+            <img src="https://i.ytimg.com/vi/jXSC1UaONzQ/mqdefault.jpg" alt="" width="148" height="84">
+            <i><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v13.72L19 12 8 5.14z"/></svg></span></i>
+          </span>
+          <span>
+            <strong>Community Digital Shift</strong>
+            <small>Video lanjutan tentang pergeseran digital komunitas RT dan RW.</small>
+            <em>Putar video →</em>
+          </span>
+        </button>
         <div class="story-wide" id="shiftWrap">
           <div class="yt-wide">
             <iframe id="shiftFrame" title="Community Digital Shift" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
