@@ -173,6 +173,11 @@
     .yt-play svg{width:28px;height:28px;margin-left:3px}
     .story-note{text-align:center;margin:18px auto 0;max-width:620px;color:var(--muted);font-size:14px}
     .story-note a,.story-note button{color:var(--blue);font-weight:750;background:none;border:0;padding:0;cursor:pointer;font:inherit}
+    .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:980px;margin:0 auto}
+    .proof-card{border:1px solid var(--line);border-radius:18px;padding:23px;background:var(--surface)}
+    .proof-card .who{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);font-weight:850}
+    .proof-card h3{font-size:15px;color:var(--heading);margin:8px 0 8px}
+    .proof-card p{font-size:13px;color:var(--muted);margin:0}
     .story-note button{display:inline-flex;align-items:center;gap:6px}
     .story-note button svg{width:16px;height:16px;flex-shrink:0}
     .story-wide{max-width:860px;margin:22px auto 0;display:none}
@@ -227,13 +232,13 @@
       .hero{padding:65px 0 58px}.hero-grid{grid-template-columns:1fr}.hero-visual{min-height:300px;margin-top:4px}.portal-window{max-width:500px}.float-chip{right:0;bottom:4px}
       .trust-grid{grid-template-columns:repeat(2,1fr);padding:18px 0}
       section{padding:65px 0}.product-grid,.managed-grid{grid-template-columns:1fr}.managed-grid{gap:28px}
-      .value-grid{grid-template-columns:1fr 1fr}.cta-band{padding:30px;display:block}.cta-band .btn{margin-top:20px}.demo-pick{grid-template-columns:1fr}
+      .value-grid{grid-template-columns:1fr 1fr}.cta-band{padding:30px;display:block}.cta-band .btn{margin-top:20px}.demo-pick{grid-template-columns:1fr}.proof-grid{grid-template-columns:1fr}
       .footer-grid{grid-template-columns:1fr 1fr;gap:28px}.footer-grid>div:first-child{grid-column:1/-1}
     }
     @media(max-width:520px){h1{font-size:41px}.hero p{font-size:15px}.hero-visual{min-height:265px}.portal-window{padding:11px}.dash-card{padding:9px;min-height:72px}.float-chip{font-size:9px;padding:9px 11px}
       .trust-grid{gap:13px}.trust-item{font-size:10px}.product-card{padding:22px}.feature-list{grid-template-columns:1fr}
       .pricing-grid{grid-template-columns:1fr}.price-card{padding:23px}.price-card .desc{min-height:0}
-      .value-grid{grid-template-columns:1fr}.cta-band h2{font-size:26px}.footer-grid{grid-template-columns:1fr}.footer-grid>div:first-child{grid-column:auto}
+      .value-grid{grid-template-columns:1fr}.cta-band h2{font-size:26px}.footer-grid{grid-template-columns:1fr}.footer-grid>div:first-child{grid-column:auto}.proof-grid{grid-template-columns:1fr}
       .copyright{display:block}.copyright span{display:block;margin-top:6px}
     }
   </style>
@@ -375,6 +380,33 @@
           </button>
         </div>
         <p class="story-note">Demo bersifat pratinjau. Data contoh hanya tersimpan di browser Anda.</p>
+      </div>
+    </section>
+
+    <section id="bukti">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Dipakai untuk urusan nyata</span>
+          <h2>Bukan hanya daftar fitur. Ini yang biasanya dikerjakan.</h2>
+          <p>Contoh pemakaian di tingkat RT dan RW. Nama wilayah dapat disesuaikan saat onboarding.</p>
+        </div>
+        <div class="proof-grid">
+          <article class="proof-card">
+            <div class="who">RT 05 / RW 02</div>
+            <h3>Kas dan iuran tertata</h3>
+            <p>Pencatatan pemasukan, pengeluaran, dan iuran warga dalam satu ringkasan, tanpa spreadsheet terpisah.</p>
+          </article>
+          <article class="proof-card">
+            <div class="who">Pengurus RT</div>
+            <h3>Pengajuan surat terpantau</h3>
+            <p>Warga mengajukan surat dari portal. Pengurus melihat status proses tanpa menelusuri chat grup.</p>
+          </article>
+          <article class="proof-card">
+            <div class="who">Koordinasi RW</div>
+            <h3>Lapor dan eskalasi jelas</h3>
+            <p>Pengaduan dari RT dapat ditindaklanjuti di tingkat RW, lengkap dengan status dan riwayat.</p>
+          </article>
+        </div>
       </div>
     </section>
 
