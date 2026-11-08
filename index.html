@@ -18,9 +18,13 @@
   <meta property="og:description" content="Digitalisasi administrasi dan pelayanan lingkungan dengan Managed Service.">
   <meta property="og:type" content="website">
     <title>SAPA | Sistem Administrasi & Pelayanan Antarwarga</title>
-    <link rel="icon" type="image/png" href="SAPA.png">
-    <link rel="apple-touch-icon" href="SAPA.png">
-    <meta property="og:image" content="SAPA.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="sapa-favicon.png">
+    <link rel="apple-touch-icon" href="sapa-apple.png">
+    <meta property="og:image" content="https://sapa-rt.pages.dev/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <link rel="preload" as="image" href="sapa-mark.webp" type="image/webp">
+    <link rel="dns-prefetch" href="https://i.ytimg.com">
     <style>
     :root{
       --navy:#102b50;--navy2:#173d69;--blue:#168bce;--cyan:#18c8df;
@@ -66,6 +70,7 @@
     header{position:sticky;top:0;z-index:20;background:var(--header-bg);backdrop-filter:blur(14px);border-bottom:1px solid var(--header-border)}
     .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
     .brand{display:flex;align-items:center;gap:11px;font-weight:850;letter-spacing:-.04em;color:var(--heading);font-size:23px}
+      .brand picture{flex-shrink:0;display:block;line-height:0}
       .brand-mark{width:42px;height:42px;border-radius:13px;object-fit:cover;display:block;flex-shrink:0;box-shadow:0 8px 18px rgba(22,139,206,.25)}
     .brand small{display:block;font-size:9px;letter-spacing:.13em;color:var(--brand-sub);font-weight:750;margin-top:-4px}
     .navlinks{display:flex;align-items:center;gap:27px;font-size:13px;font-weight:650;color:var(--nav-color)}
@@ -270,7 +275,10 @@
   <header>
     <div class="container nav">
       <a class="brand" href="#beranda" aria-label="SAPA beranda">
-        <img class="brand-mark" src="SAPA.png" alt="SAPA" width="42" height="42">
+        <picture>
+          <source type="image/webp" srcset="sapa-mark.webp">
+          <img class="brand-mark" src="sapa-mark.png" alt="SAPA" width="42" height="42" decoding="async" fetchpriority="high">
+        </picture>
         <span>SAPA<small>Sistem Administrasi & Pelayanan Antarwarga - DIGITAL COMMUNITY SERVICE</small></span>
       </a>
       <nav class="navlinks" id="navlinks" aria-label="Navigasi utama">
@@ -349,7 +357,7 @@
           </div>
           <div class="story-frame">
             <button class="yt-facade" id="ytFacade" type="button" data-yt="LsVgT4dv8zw" aria-label="Putar teaser SAPA">
-              <img src="https://i.ytimg.com/vi/LsVgT4dv8zw/hqdefault.jpg" alt="Pratinjau teaser SAPA" width="360" height="640">
+              <img src="https://i.ytimg.com/vi/LsVgT4dv8zw/hqdefault.jpg" alt="Pratinjau teaser SAPA" width="360" height="640" loading="lazy" decoding="async">
               <span class="yt-play" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v13.72L19 12 8 5.14z"/></svg></span></span>
             </button>
           </div>
@@ -369,7 +377,7 @@
         <p class="story-note">Setelah menonton, <a href="#solusi">lihat solusi SAPA</a>.</p>
         <button class="shift-cta" id="shiftBtn" type="button" aria-label="Putar Community Digital Shift">
           <span class="shift-thumb" aria-hidden="true">
-            <img src="https://i.ytimg.com/vi/jXSC1UaONzQ/mqdefault.jpg" alt="" width="148" height="84">
+            <img src="https://i.ytimg.com/vi/jXSC1UaONzQ/mqdefault.jpg" alt="" width="148" height="84" loading="lazy" decoding="async">
             <i><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v13.72L19 12 8 5.14z"/></svg></span></i>
           </span>
           <span>
@@ -582,7 +590,7 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <a class="brand" href="#beranda"><img class="brand-mark" src="SAPA.png" alt="SAPA" width="42" height="42"><span>SAPA<small>DIGITAL COMMUNITY SERVICE</small></span></a>
+          <a class="brand" href="#beranda"><picture><source type="image/webp" srcset="sapa-mark.webp"><img class="brand-mark" src="sapa-mark.png" alt="SAPA" width="42" height="42" loading="lazy" decoding="async"></picture><span>SAPA<small>DIGITAL COMMUNITY SERVICE</small></span></a>
           <p style="max-width:330px;margin-top:18px">Solusi digital untuk membantu pengurus RT/RW membangun administrasi dan pelayanan lingkungan yang lebih tertata, transparan, dan terhubung.</p>
           <p><strong style="color:#fff">Membangun Lingkungan Digital, Dimulai dari RT.</strong></p>
         </div>
