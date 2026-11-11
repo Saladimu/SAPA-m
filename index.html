@@ -229,8 +229,22 @@
     .demo-note{position:fixed;z-index:91;display:none;width:248px;padding:14px 14px 16px;background:rgba(255,225,74,.62);color:#1a1400;font-size:13px;font-weight:800;line-height:1.45;border-radius:3px;box-shadow:4px 8px 0 rgba(0,0,0,.12),0 16px 28px rgba(0,0,0,.16);transform:rotate(-6deg);pointer-events:none;backdrop-filter:blur(2px)}
     .demo-note.show{display:block}
     .demo-note:before{content:"";position:absolute;left:18px;top:-10px;border:8px solid transparent;border-bottom-color:rgba(255,225,74,.62)}
-    .demo-note-ico{display:inline-flex;width:22px;height:22px;border:2px solid #1a1400;border-radius:50%;align-items:center;justify-content:center;vertical-align:-5px;margin:0 4px}
-    body.demo-open{overflow:hidden}
+     .demo-note-ico{display:inline-flex;width:22px;height:22px;border:2px solid #1a1400;border-radius:50%;align-items:center;justify-content:center;vertical-align:-5px;margin:0 4px}
+     .demo-hint{position:fixed;right:22px;bottom:22px;z-index:92;display:none;width:min(280px,calc(100vw - 36px));background:var(--surface);color:var(--ink);border-radius:16px;box-shadow:0 18px 44px rgba(0,0,0,.28);overflow:hidden;border:1px solid var(--line)}
+     .demo-hint.show{display:block}
+     .demo-hint-bar{display:flex;align-items:center;gap:6px;padding:9px 12px;background:var(--navy);color:#d9e8f7;font-size:11px;font-weight:800}
+     .demo-hint-bar .dot{width:8px;height:8px;background:#ff5f57}
+     .demo-hint-bar .dot:nth-child(2){background:#febc2e}
+     .demo-hint-bar .dot:nth-child(3){background:#28c840}
+     .demo-hint-bar span{margin-left:4px}
+     .demo-hint-body{padding:14px 14px 16px}
+     .demo-hint-body p{margin:0 0 12px;font-size:13px;line-height:1.5;color:var(--ink);font-weight:650}
+     .demo-hint-body button{width:100%;border:0;border-radius:999px;padding:9px 14px;background:var(--blue);color:#fff;font-weight:750;font-size:12px;cursor:pointer}
+     .demo-hint-body button:hover{background:#0879ba}
+     @media(max-width:520px){.demo-hint{right:12px;bottom:12px;left:12px;width:auto}}
+     .demo-badge-cover{position:fixed;right:8px;bottom:8px;z-index:85;width:232px;height:48px;border-radius:999px;background:#f8fafc;display:none;pointer-events:auto}
+     .demo-badge-cover.show{display:block}
+     body.demo-open{overflow:hidden}
     body.demo-open .wa-float{display:none}
     .faq-list{max-width:820px;margin:auto;display:grid;gap:10px}
     details{border:1px solid var(--line);border-radius:14px;padding:17px 19px;background:var(--faq-bg)}
@@ -608,7 +622,15 @@
   <button class="demo-exit" id="demoExit" type="button" aria-label="Keluar dari demo" title="Kembali">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
   </button>
-  <div class="demo-note" id="demoNote" role="note">tekan <span class="demo-note-ico" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a1400" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></span> untuk keluar dari aplikasi demo</div>
+   <div class="demo-note" id="demoNote" role="note">tekan <span class="demo-note-ico" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a1400" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></span> untuk keluar dari aplikasi demo</div>
+   <div class="demo-badge-cover" id="demoBadgeCover" aria-hidden="true"></div>
+   <div class="demo-hint" id="demoHint" role="dialog" aria-labelledby="demoHintTitle" aria-describedby="demoHintText">
+     <div class="demo-hint-bar" id="demoHintTitle"><i class="dot" aria-hidden="true"></i><i class="dot" aria-hidden="true"></i><i class="dot" aria-hidden="true"></i><span>Tips tampilan</span></div>
+     <div class="demo-hint-body">
+       <p id="demoHintText">Tampilan akan sempurna bila menggunakan laptop atau PC desktop.</p>
+       <button type="button" id="demoHintOk">Mengerti</button>
+     </div>
+   </div>
 
   <script>
     /*
@@ -668,40 +690,51 @@
     const demoStage=document.getElementById("demoStage");
     const demoFrame=document.getElementById("demoFrame");
     const demoExit=document.getElementById("demoExit");
-    const demoNote=document.getElementById("demoNote");
-    function placeDemoNote(){
-      const left=72+Math.round(Math.random()*90);
-      const top=8+Math.round(Math.random()*54);
-      const tilt=-12+Math.round(Math.random()*16);
-      demoNote.style.left=left+"px";
-      demoNote.style.top=top+"px";
-      demoNote.style.transform="rotate("+tilt+"deg)";
-    }
-    function closeDemo(){
-      document.body.classList.remove("demo-open");
-      demoStage.classList.remove("open");
-      demoStage.hidden=true;
-      demoExit.classList.remove("show");
-      demoNote.classList.remove("show");
-      demoFrame.src="about:blank";
-    }
-    function openDemo(path){
-      if(!demoBase || demoBase==="#/") return;
-      demoFrame.src=demoBase+path.replace(/^\//,"");
-      demoStage.hidden=false;
-      demoStage.classList.add("open");
-      demoExit.classList.add("show");
-      placeDemoNote();
-      demoNote.classList.add("show");
-      document.body.classList.add("demo-open");
-    }
+     const demoNote=document.getElementById("demoNote");
+     const demoHint=document.getElementById("demoHint");
+     const demoHintOk=document.getElementById("demoHintOk");
+     const demoBadgeCover=document.getElementById("demoBadgeCover");
+     function placeDemoNote(){
+       const left=72+Math.round(Math.random()*90);
+       const top=8+Math.round(Math.random()*54);
+       const tilt=-12+Math.round(Math.random()*16);
+       demoNote.style.left=left+"px";
+       demoNote.style.top=top+"px";
+       demoNote.style.transform="rotate("+tilt+"deg)";
+     }
+     function hideDemoHint(){
+       demoHint.classList.remove("show");
+     }
+     function closeDemo(){
+       document.body.classList.remove("demo-open");
+       demoStage.classList.remove("open");
+       demoStage.hidden=true;
+       demoExit.classList.remove("show");
+       demoNote.classList.remove("show");
+       hideDemoHint();
+       demoBadgeCover.classList.remove("show");
+       demoFrame.src="about:blank";
+     }
+     function openDemo(path){
+       if(!demoBase || demoBase==="#/") return;
+       demoFrame.src=demoBase+path.replace(/^\//,"");
+       demoStage.hidden=false;
+       demoStage.classList.add("open");
+       demoExit.classList.add("show");
+       placeDemoNote();
+       demoNote.classList.add("show");
+       demoHint.classList.add("show");
+       demoBadgeCover.classList.add("show");
+       document.body.classList.add("demo-open");
+     }
     document.querySelectorAll("[data-demo-open]").forEach(el=>{
       el.addEventListener("click",()=>openDemo(el.getAttribute("data-demo-open")||""));
     });
-    demoExit.addEventListener("click",closeDemo);
-    document.addEventListener("keydown",e=>{
-      if(e.key==="Escape" && document.body.classList.contains("demo-open")) closeDemo();
-    });
+     demoExit.addEventListener("click",closeDemo);
+     demoHintOk.addEventListener("click",hideDemoHint);
+     document.addEventListener("keydown",e=>{
+       if(e.key==="Escape" && document.body.classList.contains("demo-open")) closeDemo();
+     });
     document.querySelectorAll("[data-email]").forEach(el=>{
       el.href = emailReady ? "mailto:" + cleanEmail : "#";
       if (!emailReady) el.title = "Isi infoEmail pada konfigurasi sebelum publikasi";
