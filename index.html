@@ -211,7 +211,7 @@
     .story-wide.show{display:block}
     .yt-wide{position:relative;width:100%;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;background:#0c203a;box-shadow:var(--shadow)}
     .yt-wide iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-    .demo-pick{max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .demo-pick{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
     .demo-card{display:flex;flex-direction:column;align-items:flex-start;text-align:left;border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:var(--surface);box-shadow:0 10px 30px rgba(16,43,80,.045);cursor:pointer;color:inherit}
     .demo-card:hover{transform:translateY(-2px);border-color:var(--blue)}
     .demo-card .demo-ico{width:44px;height:44px;border-radius:13px;background:var(--icon-bg);color:var(--blue);display:grid;place-items:center;font-size:18px;margin-bottom:14px}
@@ -459,6 +459,13 @@
             <p>Ringkasan RT, keputusan surat, tanggapan pengaduan, pengguna, registry, dan audit.</p>
             <span class="go">Buka Portal RW →</span>
           </button>
+          <a class="demo-card" data-demo-public href="#" aria-label="Buka situs publik">
+            <span class="demo-ico" aria-hidden="true">🌐</span>
+            <h3>Situs Publik</h3>
+            <small>Pratinjau luar</small>
+            <p>Lihat tampilan situs SAPA secara umum melalui halaman publik.</p>
+            <span class="go">Buka Situs Publik →</span>
+          </a>
         </div>
         <p class="story-note">Demo bersifat pratinjau. Data contoh hanya tersimpan di browser Anda.</p>
       </div>
@@ -645,8 +652,9 @@
       whatsappNumber: "6289602816770",
       infoEmail: "martinsabera+sapa@gmail.com",
       websiteUrl: "https://bio.site/martinsabera",
-      demoUrl: "https://demo-sapa.pages.dev/",
-      defaultMessage: "Halo SAPA, saya ingin mengetahui lebih lanjut dan menjadwalkan demo SAPA-RT / SAPA-RW."
+demoUrl: "https://demo-sapa.pages.dev/",
+       publicUrl: "https://demo-sapa.pages.dev/public/",
+       defaultMessage: "Halo SAPA, saya ingin mengetahui lebih lanjut dan menjadwalkan demo SAPA-RT / SAPA-RW."
     };
 
     const cleanEmail = String(SAPA_CONFIG.infoEmail || "").trim();
@@ -727,9 +735,18 @@
        demoBadgeCover.classList.add("show");
        document.body.classList.add("demo-open");
      }
-    document.querySelectorAll("[data-demo-open]").forEach(el=>{
-      el.addEventListener("click",()=>openDemo(el.getAttribute("data-demo-open")||""));
-    });
+document.querySelectorAll("[data-demo-open]").forEach(el=>{
+       el.addEventListener("click",()=>openDemo(el.getAttribute("data-demo-open")||""));
+     });
+     document.querySelectorAll("[data-demo-public]").forEach(el=>{
+       el.addEventListener("click",e=>{
+         e.preventDefault();
+         const href=String(SAPA_CONFIG.publicUrl||"").trim();
+         if(!href) return;
+         window.open(href,"_blank","noopener,noreferrer");
+       });
+       el.href=String(SAPA_CONFIG.publicUrl||"").trim()||"#";
+     });
      demoExit.addEventListener("click",closeDemo);
      demoHintOk.addEventListener("click",hideDemoHint);
      document.addEventListener("keydown",e=>{
