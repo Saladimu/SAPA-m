@@ -459,13 +459,13 @@
             <p>Ringkasan RT, keputusan surat, tanggapan pengaduan, pengguna, registry, dan audit.</p>
             <span class="go">Buka Portal RW →</span>
           </button>
-          <a class="demo-card" data-demo-public href="#" aria-label="Buka situs publik">
+          <button class="demo-card" type="button" data-demo-open="public/" aria-label="Buka situs publik">
             <span class="demo-ico" aria-hidden="true">🌐</span>
             <h3>Situs Publik</h3>
             <small>Pratinjau luar</small>
             <p>Lihat tampilan situs SAPA secara umum melalui halaman publik.</p>
             <span class="go">Buka Situs Publik →</span>
-          </a>
+          </button>
         </div>
         <p class="story-note">Demo bersifat pratinjau. Data contoh hanya tersimpan di browser Anda.</p>
       </div>
@@ -629,7 +629,7 @@
   <button class="demo-exit" id="demoExit" type="button" aria-label="Keluar dari demo" title="Kembali">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
   </button>
-   <div class="demo-note" id="demoNote" role="note">tekan <span class="demo-note-ico" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a1400" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></span> untuk keluar dari aplikasi demo</div>
+   <div class="demo-note" id="demoNote" role="note"><span id="demoNoteText">tekan <span class="demo-note-ico" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a1400" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></span> untuk keluar dari aplikasi demo</span></div>
    <div class="demo-badge-cover" id="demoBadgeCover" aria-hidden="true"></div>
    <div class="demo-hint" id="demoHint" role="dialog" aria-labelledby="demoHintTitle" aria-describedby="demoHintText">
      <div class="demo-hint-bar" id="demoHintTitle"><i class="dot" aria-hidden="true"></i><i class="dot" aria-hidden="true"></i><i class="dot" aria-hidden="true"></i><span>Tips tampilan</span></div>
@@ -723,18 +723,26 @@ demoUrl: "https://demo-sapa.pages.dev/",
        demoBadgeCover.classList.remove("show");
        demoFrame.src="about:blank";
      }
-     function openDemo(path){
-       if(!demoBase || demoBase==="#/") return;
-       demoFrame.src=demoBase+path.replace(/^\//,"");
-       demoStage.hidden=false;
-       demoStage.classList.add("open");
-       demoExit.classList.add("show");
-       placeDemoNote();
-       demoNote.classList.add("show");
-       demoHint.classList.add("show");
-       demoBadgeCover.classList.add("show");
-       document.body.classList.add("demo-open");
-     }
+      function openDemo(path){
+        if(!demoBase || demoBase==="#/") return;
+        demoFrame.src=demoBase+path.replace(/^\//,"");
+        demoStage.hidden=false;
+        demoStage.classList.add("open");
+        demoExit.classList.add("show");
+        placeDemoNote();
+        demoNote.classList.add("show");
+        demoHint.classList.add("show");
+        demoBadgeCover.classList.add("show");
+        document.body.classList.add("demo-open");
+        const noteText=document.getElementById("demoNoteText");
+        if(noteText){
+          if(path.indexOf("public/")===0){
+            noteText.innerHTML="tekan <span class='demo-note-ico' aria-hidden='true'><svg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='#1a1400' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'><path d='M15 18l-6-6 6-6'/></svg></span> untuk keluar dari situs publik";
+          }else{
+            noteText.innerHTML="tekan <span class='demo-note-ico' aria-hidden='true'><svg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='#1a1400' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'><path d='M15 18l-6-6 6-6'/></svg></span> untuk keluar dari aplikasi demo";
+          }
+        }
+      }
 document.querySelectorAll("[data-demo-open]").forEach(el=>{
        el.addEventListener("click",()=>openDemo(el.getAttribute("data-demo-open")||""));
      });
